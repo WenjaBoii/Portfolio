@@ -257,12 +257,12 @@ body {
 Exam Images
 ======================================== */
 
-#Portfolio_Content .Hero_Section_Img {
+#Image_Collection.Img {
     width: 350px;
     flex-shrink: 0;
 }
 
-#Portfolio_Content .Hero_Section_Img img {
+#Image_Collection.Img {
     display: block;
 
     width: 350px;
