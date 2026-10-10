@@ -253,3 +253,18 @@ body {
 .Hero_Section_Description {
     flex: 1 !important;
 }
+/* ========================================
+Exam Images
+======================================== */
+
+#Portfolio_Content .Hero_Section_Img {
+    width: 350px;
+    flex-shrink: 0;
+}
+
+#Portfolio_Content .Hero_Section_Img img {
+    display: block;
+
+    width: 350px;
+    height: auto;
+}
