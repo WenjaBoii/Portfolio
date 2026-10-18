@@ -1,3 +1,4 @@
+```css
 /* ========================================
    BASE
 ======================================== */
@@ -10,19 +11,15 @@ html,
 body {
     width: 100%;
     height: 100%;
-
     margin: 0;
     padding: 0;
-
     overflow: hidden;
 }
 
 body {
     background-color: black;
     color: white;
-
     font-family: "Courier New", monospace;
-
     text-shadow: 0 0 2px currentColor;
 }
 
@@ -33,15 +30,12 @@ body {
 
 .Hero_Section {
     position: relative;
-
     width: 100%;
     height: 100vh;
-
     border: 2px solid currentColor;
 
     display: flex;
     flex-direction: column;
-
     overflow: hidden;
 }
 
@@ -52,42 +46,28 @@ body {
 
 .Hero_Section_Header {
     width: 100%;
-
     flex-shrink: 0;
-
     border-bottom: 2px solid currentColor;
 }
 
 .Hero_Section_Header nav {
     display: flex;
-
     width: 100%;
     height: 100%;
 }
 
 .Hero_Section_Header a {
     flex: 1;
-
     padding: 24px;
-
     color: inherit;
     text-decoration: none;
-
     text-align: center;
-
     border-right: 1px solid currentColor;
-
-    transition: none;
 }
 
 .Hero_Section_Header a:last-child {
     border-right: none;
 }
-
-
-/* ========================================
-   TAB HOVER / ACTIVE
-======================================== */
 
 .Hero_Section_Header a:hover,
 .Hero_Section_Header a.active {
@@ -99,15 +79,13 @@ body {
 /* ========================================
    HERO CONTENT AREA
 ======================================== */
+
 .Hero_Section_Content {
     position: relative;
-
     flex: 1;
     width: 100%;
-
     min-width: 0;
     min-height: 0;
-
     overflow: hidden;
 }
 
@@ -116,61 +94,49 @@ body {
    PORTFOLIO CONTENT
 ======================================== */
 
-#Portfolio_Content {
+#Portfolio_Content,
+.Portfolio_Content {
     width: 100%;
     height: 100%;
-
     display: flex;
     flex-direction: row;
-
     align-items: flex-start;
     justify-content: flex-start;
-
     gap: 20px;
-
     padding: 30px;
-
     overflow: hidden;
 }
 
-
-/* ========================================
-   IMAGE
-======================================== */
-
-#Portfolio_Content .Hero_Section_Img {
+#Portfolio_Content .Hero_Section_Img,
+.Hero_Section_Img {
+    flex: 0 0 350px;
     width: 350px;
-    flex-shrink: 0;
 }
 
-#Portfolio_Content .Hero_Section_Img img {
+#Portfolio_Content .Hero_Section_Img img,
+.Hero_Section_Img img {
     display: block;
-
     width: 350px;
     height: auto;
 }
 
-
-/* ========================================
-   DESCRIPTION
-======================================== */
-
-#Portfolio_Content .Hero_Section_Description {
+#Portfolio_Content .Hero_Section_Description,
+.Hero_Section_Description {
     flex: 1;
-
     width: auto;
     min-width: 0;
 }
 
 #Portfolio_Content .Hero_Section_Description h4 {
-    margin: 0 0 5px 0;
+    margin: 0 0 5px;
     font-size: 64px;
 }
 
 #Portfolio_Content .Hero_Section_Description p {
-    font-size: 24px;
     margin: 0;
+    font-size: 24px;
 }
+
 
 /* ========================================
    TERMINAL TEXT
@@ -178,8 +144,6 @@ body {
 
 .terminal_text {
     display: inline-block;
-
-    transition: none;
 }
 
 .terminal_text:hover {
@@ -194,67 +158,40 @@ body {
 
 .Boot_Screen {
     position: absolute;
-
     inset: 0;
-
     z-index: 10;
 
     display: flex;
     flex-direction: column;
-
     justify-content: center;
     align-items: center;
 
     font-family: "Courier New", monospace;
-
     overflow: hidden;
 }
 
 .Boot_Screen p {
     margin: 4px 0;
-
     text-align: center;
 }
 
 .Boot_Screen p span {
     display: inline-block;
-
     width: 0;
-
     overflow: hidden;
-
     white-space: nowrap;
 }
 
-
-/* ========================================
-   BOOT CURSOR
-======================================== */
-
 .cursor_boot {
     display: inline-block;
-
     width: auto !important;
-
     overflow: visible !important;
-
     white-space: normal !important;
 }
 
-.Portfolio_Content {
-    display: flex !important;
-    flex-direction: row !important;
-}
 
-.Hero_Section_Img {
-    flex: 0 0 350px !important;
-}
-
-.Hero_Section_Description {
-    flex: 1 !important;
-}
 /* ========================================
-Exam Images
+   IMAGE COLLECTION
 ======================================== */
 
 .Image_Collection {
@@ -271,38 +208,48 @@ Exam Images
 
 .Image_Collection img {
     display: block;
-
-    width: 100%;
-    max-width: 250px;
+    width: 250px;
+    max-width: 100%;
     height: 180px;
 
     object-fit: contain;
     flex-shrink: 0;
+    cursor: pointer;
 
-    cursor:pointer;
+    transition: transform 0.2s ease;
 }
-```css
-/* Image Popup Background */
+
+.Image_Collection img:hover {
+    transform: scale(1.04);
+}
+
+
+/* ========================================
+   IMAGE POPUP
+======================================== */
+
 .Image_Popup {
     display: none;
-    position: fixed;
-    z-index: 9999;
+    position: fixed !important;
     inset: 0;
+    z-index: 99999;
 
-    background: rgba(0, 0, 0, 0.9);
+    width: 100vw;
+    height: 100vh;
+
+    background: rgba(0, 0, 0, 0.92);
 
     justify-content: center;
     align-items: center;
 
-    padding: 20px;
-    box-sizing: border-box;
+    padding: 40px;
     cursor: pointer;
 }
 
 .Popup_Image {
     display: block;
 
-    max-width: 90%;
+    max-width: 90vw;
     max-height: 85vh;
 
     width: auto;
@@ -311,7 +258,6 @@ Exam Images
     object-fit: contain;
     cursor: default;
 }
-
 
 .Popup_Close {
     position: absolute;
@@ -323,5 +269,10 @@ Exam Images
     font-weight: bold;
 
     cursor: pointer;
+    text-shadow: none;
 }
 
+.Popup_Close:hover {
+    color: #aaa;
+}
+```
