@@ -281,3 +281,47 @@ Exam Images
 
     cursor:pointer;
 }
+```css
+/* Image Popup Background */
+.Image_Popup {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.9);
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.Popup_Image {
+    display: block;
+
+    max-width: 90%;
+    max-height: 85vh;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+    cursor: default;
+}
+
+
+.Popup_Close {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
