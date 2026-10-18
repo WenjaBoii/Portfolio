@@ -11,15 +11,21 @@ async function loadPage(page) {
         const response = await fetch(page);
 
         if (!response.ok) {
-            throw new Error("Page could not be loaded");
+            throw new Error(`Page could not be loaded: ${response.status}`);
         }
 
         const html = await response.text();
-
         content.innerHTML = html;
 
-        // Setup popup after loading the page
+        // Set up popup after the page is loaded
         setupImagePopup();
+
+        // Report images that failed to load
+        content.querySelectorAll(".Image_Collection img").forEach(image => {
+            image.addEventListener("error", () => {
+                console.error("Image failed to load:", image.getAttribute("src"));
+            });
+        });
 
     } catch (error) {
         console.error(error);
@@ -28,67 +34,62 @@ async function loadPage(page) {
 }
 
 function setupImagePopup() {
-    const popup = document.getElementById("ImagePopup");
-    const popupImage = document.getElementById("PopupImage");
-    const closeButton = document.querySelector(".Popup_Close");
+    const popup = content.querySelector("#ImagePopup");
+    const popupImage = content.querySelector("#PopupImage");
+    const closeButton = content.querySelector(".Popup_Close");
 
     if (!popup || !popupImage || !closeButton) {
-        console.error("Popup elements not found.");
+        console.error("Popup elements not found in loaded page.");
         return;
     }
 
-    // Make each image clickable
     const images = content.querySelectorAll(".Image_Collection img");
 
     images.forEach(image => {
         image.addEventListener("click", () => {
+            if (!image.complete || image.naturalWidth === 0) {
+                console.error("Cannot open broken image:", image.getAttribute("src"));
+                return;
+            }
+
             popupImage.src = image.src;
             popupImage.alt = image.alt;
             popup.style.display = "flex";
         });
     });
 
-    // Close using the X button
     closeButton.onclick = () => {
         popup.style.display = "none";
-        popupImage.src = "";
+        popupImage.removeAttribute("src");
     };
 
-    // Close by clicking the dark background
     popup.onclick = event => {
         if (event.target === popup) {
             popup.style.display = "none";
-            popupImage.src = "";
+            popupImage.removeAttribute("src");
         }
     };
 }
 
-// Close popup using Escape
 document.addEventListener("keydown", event => {
     if (event.key === "Escape") {
-        const popup = document.getElementById("ImagePopup");
-        const popupImage = document.getElementById("PopupImage");
+        const popup = content.querySelector("#ImagePopup");
+        const popupImage = content.querySelector("#PopupImage");
 
         if (popup) popup.style.display = "none";
-        if (popupImage) popupImage.src = "";
+        if (popupImage) popupImage.removeAttribute("src");
     }
 });
 
-// Handle tab clicks
 tabs.forEach(tab => {
     tab.addEventListener("click", function(event) {
         event.preventDefault();
 
         const page = this.getAttribute("href");
 
-        // Change active tab
-        tabs.forEach(tab => {
-            tab.classList.remove("active");
-        });
-
+        tabs.forEach(item => item.classList.remove("active"));
         this.classList.add("active");
 
-        // Load selected page
         loadPage(page);
     });
 });
