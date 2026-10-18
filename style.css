@@ -257,7 +257,7 @@ body {
 Exam Images
 ======================================== */
 
-#Image_Collection {
+.Image_Collection {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -269,7 +269,7 @@ Exam Images
     padding: 20px;
 }
 
-#Image_Collection img {
+.Image_Collection img {
     display: block;
 
     width: 100%;
