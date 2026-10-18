@@ -257,14 +257,26 @@ body {
 Exam Images
 ======================================== */
 
-#Image_Collection.Img {
-    width: 350px;
-    flex-shrink: 0;
+#Image_Collection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 20px;
+
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
 }
 
-#Image_Collection.Img {
+#Image_Collection img {
     display: block;
 
-    width: 350px;
-    height: auto;
-}
+    width: 100%;
+    max-width: 250px;
+    height: 180px;
+
+    object-fit: contain;
+    flex-shrink: 0;
+
+    cursor:
